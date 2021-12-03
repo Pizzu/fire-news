@@ -1,9 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
 import Image from 'next/image'
+import { useContext } from 'react'
+import { UserContext } from '../lib/context'
 
 export default function Navbar() {
-  const user = null 
-  const username = null
+
+  const { user, username } = useContext(UserContext)
 
   return (
     <nav className="navbar">
@@ -18,14 +21,14 @@ export default function Navbar() {
 
           <>
             <li className="push-left">
-              <Link href="/" passHref>
+              <Link href="/admin" passHref>
                 <button className="btn-blue">Write Posts</button>
               </Link>
             </li>
 
             <li>
               <Link href={`/${username}`} passHref>
-                <Image src={user?.photoUrl} alt="profilePicture" />
+                <img src={user?.photoURL} alt="profilePicture" />
               </Link>
             </li>
           </>
