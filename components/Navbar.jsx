@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useContext } from 'react'
 import { UserContext } from '../lib/context'
+import { auth } from '../lib/firebase'
 
 export default function Navbar() {
 
@@ -21,6 +22,10 @@ export default function Navbar() {
 
           <>
             <li className="push-left">
+              <SignOutButton />
+            </li>
+
+            <li>
               <Link href="/admin" passHref>
                 <button className="btn-blue">Write Posts</button>
               </Link>
@@ -47,5 +52,23 @@ export default function Navbar() {
     </nav>
 
 
+  )
+}
+
+function SignOutButton() {
+
+  const signOut = async () => {
+    try {
+      await auth.signOut()
+    } catch (error) {
+      console.log('Error during sign out', error.message);
+      toast.error('Error during sign out')
+    }
+  }
+
+  return(
+    <button onClick={signOut}>
+      Sign Out
+    </button>
   )
 }
