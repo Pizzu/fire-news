@@ -7,7 +7,6 @@ import Loader from '../components/Loader'
 const LIMIT = 1
 
 export default function Home(props) {
-
   const [posts, setPosts] = useState(props.posts)
   const [loading, setLoading] = useState(false)
   const [postsEnd, setPostsEnd] = useState(false)
@@ -17,7 +16,7 @@ export default function Home(props) {
     const lastPost = posts[posts.length - 1]
 
     const cursor = typeof lastPost.createdAt === 'number' ? fromMillis(lastPost.createdAt) : lastPost.createdAt
-    console.log(cursor)
+
     const query = firestore
       .collectionGroup('posts')
       .where('published', '==', true)
@@ -51,9 +50,8 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps(context) {
-
-  const postsQuery = firestore.
-    collectionGroup('posts')
+  const postsQuery = firestore
+    .collectionGroup('posts')
     .where('published', '==', true)
     .orderBy('createdAt', 'desc')
     .limit(LIMIT)
