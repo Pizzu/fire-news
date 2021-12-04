@@ -6,7 +6,7 @@ export default function UserProfilePage({ user, posts }) {
   return (
     <main>
       <UserProfile user={user} />
-      <PostFeed post={posts} />
+      <PostFeed posts={posts} />
     </main>
   )
 }
@@ -14,7 +14,6 @@ export default function UserProfilePage({ user, posts }) {
 export async function getServerSideProps({ query }) {
 
   const { username } = query
-
   const userDoc = await getUserWithUsername(username)
 
   //JSON serializable data
@@ -26,7 +25,7 @@ export async function getServerSideProps({ query }) {
     const postsQuery = userDoc.ref
       .collection('posts')
       .where('published', '==', true)
-      .orderBy('createdBy', 'desc')
+      .orderBy('createdAt', 'desc')
       .limit(5)
     posts = (await postsQuery.get()).docs.map(postToJSON)
   }
