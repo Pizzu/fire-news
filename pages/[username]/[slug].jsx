@@ -35,11 +35,26 @@ export async function getStaticProps({ params }) {
   let post = null
   let path = null
 
+  // If no user, short circuit to 404 page
+  if (!userDoc) {
+    return {
+      notFound: true
+    }
+  }
+
   if (userDoc) {
     const query = userDoc.ref.collection('posts').where('slug', '==', slug)
-    const postDoc = (await query.get()).docs[0]
-    post = postToJSON(postDoc)
-    path = postDoc.ref.path
+    const queryResult = await query.get()
+    if (queryResult.empty) {
+      return {
+        notFound: true
+      }
+    } else {
+      const postDoc = queryResult.docs[0]
+      post = postToJSON(postDoc)
+      path = postDoc.ref.path
+    }
+    
   }
 
   // Revalidate tells next to regenerate this page on the server when you requests come in, but only during a time interval
