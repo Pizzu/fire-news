@@ -43,14 +43,12 @@ export async function getStaticProps({ params }) {
   }
 
   if (userDoc) {
-    const query = userDoc.ref.collection('posts').where('slug', '==', slug)
-    const queryResult = await query.get()
-    if (queryResult.empty) {
+    const postDoc = await userDoc.ref.collection('posts').doc(slug).get()
+    if (!postDoc.exists) {
       return {
         notFound: true
       }
     } else {
-      const postDoc = queryResult.docs[0]
       post = postToJSON(postDoc)
       path = postDoc.ref.path
     }
