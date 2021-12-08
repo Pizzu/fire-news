@@ -1,8 +1,11 @@
+import Image from 'next/image'
 /* eslint-disable @next/next/no-img-element */
 export default function UserProfile({ user }) {
   return (
     <div className="box-center">
-      <img src={user.photoURL || '/hacker.png'} className="card-img-center" alt="profile" />
+      <div className="user-profile-img-wrapper">
+      <Image src={user.photoURL || '/hacker.png'} className="card-img-center" alt="profile" layout="fill" />
+      </div>
       <p>
         <i>@{user.username}</i>
       </p>

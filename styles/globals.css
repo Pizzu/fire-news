@@ -259,4 +259,11 @@ input[type="file"] {
   text-align: center;
 }
 
+.user-profile-img-wrapper {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  align-self: center;
+}
+
 .hidden { display:  none; }
