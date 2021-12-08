@@ -22,10 +22,9 @@ export default function AdminPostsPage({ }) {
 
 function PostList() {
   const { user } = useContext(UserContext);
-  const postsRef = firestore.collection('users').doc(user.uid).collection('posts')
+  const postsRef = firestore.collection('users').doc(user?.uid).collection('posts')
   const query = postsRef.orderBy('createdAt', 'desc')
   const [posts] = useCollectionDataOnce(query)
-
   return (
     <>
       <h1>Manage your posts</h1>

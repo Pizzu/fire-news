@@ -25,7 +25,7 @@ function PostManager() {
   const { user } = useContext(UserContext)
   const { slug } = router.query
 
-  const postRef = firestore.collection('users').doc(user.uid).collection('posts').doc(slug)
+  const postRef = firestore.collection('users').doc(user?.uid).collection('posts').doc(slug)
   const [post] = useDocumentDataOnce(postRef)
 
   const deletePost = async () => {
