@@ -9,9 +9,9 @@ import ReactMarkdown from 'react-markdown'
 import { UserContext } from '../../lib/context';
 import { useDocumentDataOnce } from 'react-firebase-hooks/firestore';
 import Link from 'next/link'
+import ImageUploader from '../../components/ImageUploader';
 
 export default function AdminPostEdit() {
-
   return (
     <AuthCheck>
       <PostManager />
@@ -59,7 +59,7 @@ function PostForm({ postValues, postRef, preview }) {
   const { isValid, isDirty } = useFormState({
     control
   })
-  console.log(errors)
+
   const updatePost = async ({ content, published }) => {
     await postRef.update({
       content,
@@ -81,14 +81,16 @@ function PostForm({ postValues, postRef, preview }) {
       )}
 
       <div className={preview ? styles.hidden : styles.controls}>
+
+      <ImageUploader />
   
-        <textarea name="content" {...register('content',
-            {
-              required: "content is required",
-              maxLength: {value: 20000, message: 'Content is too long'},
-              minLength: {value: 10, message: 'Content is too short'}
-            },
-          )}></textarea>
+      <textarea name="content" {...register('content',
+          {
+            required: "content is required",
+            maxLength: {value: 20000, message: 'Content is too long'},
+            minLength: {value: 10, message: 'Content is too short'}
+          },
+        )}></textarea>
 
         <fieldset>
           <input 
