@@ -28,6 +28,19 @@ function PostManager() {
   const postRef = firestore.collection('users').doc(user.uid).collection('posts').doc(slug)
   const [post] = useDocumentDataOnce(postRef)
 
+  const deletePost = async () => {
+    try {
+      await postRef.delete()
+    } catch (error) {
+      console.log('Error during sign out', error.message);
+      toast.error('Error while deleting post')
+    }
+
+    toast.success('Post deleted')
+    router.push('/admin')
+    
+  }
+
   return (
     <main className={styles.container}>
       {post && (
@@ -45,7 +58,7 @@ function PostManager() {
             <Link href={`/${post.username}/${post.slug}`} passHref>
               <button className="btn-brown">Live view</button>
             </Link>
-            <button className="btn-red">Delete</button>
+            <button className="btn-red" onClick={deletePost}>Delete</button>
           </aside>
         </>
       )}
