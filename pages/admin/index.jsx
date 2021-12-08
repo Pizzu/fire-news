@@ -5,7 +5,7 @@ import PostFeed from '../../components/PostFeed'
 import { UserContext } from '../../lib/context';
 import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useCollection } from 'react-firebase-hooks/firestore';
+import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import kebabCase from 'lodash.kebabcase';
 import toast from 'react-hot-toast';
 
@@ -21,11 +21,10 @@ export default function AdminPostsPage({ }) {
 }
 
 function PostList() {
-  const postsRef = firestore.collection('users').doc(auth.currentUser.uid).collection('posts')
+  const { user } = useContext(UserContext);
+  const postsRef = firestore.collection('users').doc(user.uid).collection('posts')
   const query = postsRef.orderBy('createdAt', 'desc')
-  const [querySnapshot] = useCollection(query)
-
-  const posts = querySnapshot?.docs.map((doc) => doc.data())
+  const [posts] = useCollectionDataOnce(query)
 
   return (
     <>

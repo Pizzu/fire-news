@@ -27,7 +27,7 @@ export default function Navbar() {
 
             <li>
               <Link href="/admin" passHref>
-                <button className="btn-blue">Write Posts</button>
+                <button className="btn-brown">Write Posts</button>
               </Link>
             </li>
 

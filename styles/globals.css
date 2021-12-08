@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --color-bg: #eef0f1;
+  --color-bg: #F5EEDC;
   --color-text: #08090a;
-  --color-blue: #3b49df;
-  --color-red: #df3b3b;
+  --color-brown: #FACE7F;
+  --color-red: #911F27;
   --color-green: #3bdf72;
   --color-gray: #b5bdc4;
 }
@@ -12,7 +12,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Red Hat Mono', sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text);
   margin-top: 50px;
@@ -64,13 +64,13 @@ code {
 .navbar {
   height: 70px;
   width: 100%;
-  background: white;
+  background: var(--color-bg);
   color: var(--colors-text);
   position: fixed;
   top: 0;
-  padding: 0 10vw;
+  padding: 2.5em 10vw;
   font-weight: bold;
-  border-bottom: 1px solid var(--color-gray);
+  box-shadow: 0px 10px 41px 0px rgba(0,0,0,0.12);
   z-index: 99;
 }
 
@@ -108,7 +108,7 @@ code {
   text-align: center;
   justify-content: center;
   text-decoration: none;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Red Hat Mono', sans-serif;
   font-weight: bold;
   border-radius: 0.25rem;
   cursor: pointer;
@@ -133,9 +133,9 @@ button[disabled]{
   cursor: not-allowed;
 }
 
-button.btn-blue {
-  background-color: var(--color-blue);
-  color: white;
+button.btn-brown {
+  background-color: var(--color-brown);
+  color: var(--color-text);
 }
 
 button.btn-red {
@@ -172,7 +172,7 @@ button.btn-logo {
   padding: 2rem;
   margin: 1rem 0;
   background-color: white;
-  border: 1px solid var(--color-gray);
+  border: 1px solid #FACE7F;
   border-radius: 8px;
 }
 

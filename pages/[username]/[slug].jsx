@@ -19,7 +19,7 @@ export default function PostPage(props) {
 
       <aside className="card">
         <p>
-          <strong>{post.heartCount || 0} 🤍</strong>
+          <strong>{post.heartCount || 0} ❤️</strong>
         </p>
 
       </aside>
@@ -51,8 +51,7 @@ export async function getStaticProps({ params }) {
     } else {
       post = postToJSON(postDoc)
       path = postDoc.ref.path
-    }
-    
+    } 
   }
 
   // Revalidate tells next to regenerate this page on the server when you requests come in, but only during a time interval

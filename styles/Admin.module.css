@@ -35,6 +35,9 @@
   outline: none;
   padding: 0.5rem;
   font-size: 1.25rem;
+  font-family: inherit;
+  border-radius: 8px;
+  max-width: 100%;
 }
 
 .input {
@@ -43,6 +46,8 @@
   font-size: 2.5rem;
   width: 100%;
   padding: 5px 10px;
+  font-family: inherit;
+  border-radius: 8px;
 }
 
 .checkbox {
