@@ -5,7 +5,7 @@ import Loader from '../components/Loader'
 import Metatags from '../components/Metatags'
 
 // MAX post to query per page
-const LIMIT = 1
+const LIMIT = 5
 
 export default function Home(props) {
   const [posts, setPosts] = useState(props.posts)
